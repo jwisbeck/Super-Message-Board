@@ -1,9 +1,19 @@
-// Include it and extract some methods for convenience
-const server = require('server');
-const { get, post } = server.router;
+var http = require('http');
+const express = require('express')
+const app = express()
+const path = require('path')
+const port = 3000;
 
-// Launch server with options and a couple of routes
-server({ port: 8080 }, [
-  get('/', ctx => 'Hello world'),
-  post('/', ctx => console.log(ctx.data))
-]);
+//Home directory
+
+//Loads folder containing assets 
+app.use(express.static(__dirname + '/settings'));
+
+//File that will display on startup
+app.get('/', function(req,res){
+  res.sendFile(__dirname + '/settings/settings.html')
+})
+
+app.listen(port, () =>{
+  console.log(`Listening on port ${port}`)
+});

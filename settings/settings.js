@@ -1,11 +1,4 @@
-/* Example for using file-system is at the bottom */
 
-function setup() {
-
-    modalSetup();
-
-
-}
 
 // Setup opening a modal
 function modalSetup() {
@@ -29,22 +22,12 @@ function modalSetup() {
             currentModal[index].style.display = 'none';
         })
     }
-
-
 }
+
+function setup(){
+    modalSetup();
+    console.log('Modals were setup')
+}
+
 
 setup();
-
-
-/* file-system example */
-let fs = require('file-system')
-
-let test = {
-    'firstName': 'Elijah',
-    'lastName': 'Chanakira',
-    'roomNumber': 240,
-    'courseTitle': 'CMSC423'
-}
-
-
-fs.writeFile('./test.json', JSON.stringify(test), function (err) {})
