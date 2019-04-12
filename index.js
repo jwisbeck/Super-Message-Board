@@ -8,9 +8,13 @@ const port = 3000;
 
 //Loads folder containing assets 
 app.use(express.static(__dirname + '/settings'));
+app.use(express.static(__dirname + '/queue'));
+app.use(express.static(__dirname + '/node_modules/fs-extra/'));
+
+
 
 //File that will display on startup
-app.get('/', function(req,res){
+app.get('/ele', function(req,res){
   res.sendFile(__dirname + '/settings/settings.html')
 })
 
