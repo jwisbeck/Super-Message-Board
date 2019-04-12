@@ -1,4 +1,9 @@
 
+d3.json('test.json', function(data){
+    return data
+})
+.then(val => console.log(val));
+
 
 // Setup opening a modal
 function modalSetup() {
