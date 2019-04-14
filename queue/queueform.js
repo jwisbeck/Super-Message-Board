@@ -6,8 +6,7 @@ classes.push("CMSC434");
 classes.push("CMSC412");
 classes.push("CMSC666");
 classes.push("Other");
-var queuefilname="../user_data/queue.txt";
-
+let queue=[];
 var currentpos=0;
 var last =currentpos;
 function Student(name,position,email, phonenum,cls,msg){
@@ -18,13 +17,15 @@ function Student(name,position,email, phonenum,cls,msg){
   this.cls=cls;
   this.msg=msg;
 }
+document.getElementById("msg").setAttribute("style", "height: 100px;");
 var waitlist = [];
 var s1= new Student();
 
 
 function dropd(){
-  var numofclasses=classes.length;
-  var s="";
+  getCurrentCL();
+  let numofclasses=classes.length;
+  let s="";
   for(i=0;i<numofclasses;i++){
     s+="<option value=\""+classes[i]+"\">"+classes[i]+"<\/option>";
   }
@@ -47,32 +48,87 @@ function addToWaitlist(){
   phonenum=document.getElementById("phone").value;
   cls=document.getElementById("smeagol").value;
   msg=document.getElementById("msg").value;
-  position=last+1;
-  last=position
+  position=incId();
+
   var s1= new Student(name, position,email,phonenum,cls,msg);
-  waitlist.enqueue(s1);
+
+  addToQueue(s1);
   //write
   alert("you have been added to the queue, your number is: "+position);
 }
+let id=0;
+function setID(){
+    localStorage.setItem('id', JSON.stringify(id))
+}
+setID();
 
-function removeFromWaitlist(){
-  currentpos+=1;
-  waitlist.dequeue();
-}
-function removeFromWaitlist(i){
-  currentpos+=1;
-  waitlist.splice(i,1);
-}
-function writeToFile(filename, list){
-waitlist=[];
-var text = fs.readFileSync(filename);
-var textByLine = text.split("\n");
-for(i=textByLine.length-1;i>=0;i--){
-  var sarray=textByLine[i].split(",");
-  var s1= new Student(sarray[0], sarray[1],sarray[2],sarray[3],sarray[4],sarray[5]);
-  waitlist.push(s1);
-}
-}
-function readFromFile(filename, list){
+function incId() {
+  let id = JSON.parse(localStorage.getItem('id'));
+    localStorage.setItem('id', JSON.stringify(queue));
+    return id;
 
+}
+
+function addToQueue(studentObj) {
+    getCurrentQueue();
+    queue.push(studentObj);
+    localStorage.setItem('currentQueue', JSON.stringify(queue));
+}
+function getNumberInline(){
+    getCurrentQueue();
+    console.log(queue.length);
+    return queue.length;
+}
+var currentStudent=null;
+
+//removes a specific index
+function removeFromQueue(index){
+  getCurrentQueue();
+    queue.splice(index,1);
+    localStorage.setItem('currentQueue', JSON.stringify(queue));
+}
+//gets next in queue
+
+function nextInQueue(){
+  getCurrentQueue();
+  currentStudent=queue.shift();
+  localStorage.setItem('currentQueue', JSON.stringify(queue));
+}
+function getCurrentCL() {
+    let classes = JSON.parse(localStorage.getItem('classlist'));
+    console.log(classes);
+}
+//cls is a string for the class name and all that
+
+function addToCL(cls) {
+    getCurrentCL();
+    classes.unshift(cls);
+    localStorage.setItem('classlist', JSON.stringify(classes));
+}
+
+
+//removes a specific index
+function removeFromCL(index){
+  getCurrentCL();
+    classses.splice(index,1);
+    localStorage.setItem('classlist', JSON.stringify(classes));
+}
+//gets next in queue
+function resetCL(){
+localStorage.setItem('classlist', JSON.stringify(classlist));
+
+let cls="Other";
+
+classes.unshift(cls);
+localStorage.setItem('classlist', JSON.stringify(classes));
+
+}
+
+function getCurrentCL() {
+    let classes = JSON.parse(localStorage.getItem('classlist'));
+    console.log(classes);
+}
+function getCurrentQueue() {
+    let queue = JSON.parse(localStorage.getItem('queue'));
+    console.log(queue);
 }
