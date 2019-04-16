@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# Super-Message-Board
-# npm i file-system --save
-=======
 # Super-Message-Board
 
 ## **Setup Instructions**
