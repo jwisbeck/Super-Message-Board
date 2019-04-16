@@ -6,12 +6,7 @@ classes.push("CMSC434");
 classes.push("CMSC412");
 classes.push("CMSC666");
 classes.push("Other");
-<<<<<<< HEAD
 let queue=[];
-=======
-var queuefilname="../user_data/queue.txt";
-
->>>>>>> c5c84ef85b2ea83a46a4f7a6f88564557e0e3970
 var currentpos=0;
 var last =currentpos;
 function Student(name,position,email, phonenum,cls,msg){
@@ -22,10 +17,10 @@ function Student(name,position,email, phonenum,cls,msg){
   this.cls=cls;
   this.msg=msg;
 }
-document.getElementById("msg").setAttribute("style", "height: 100px;");
 var waitlist = [];
 var s1= new Student();
 
+document.getElementById("msg").setAttribute("style", "height: 100px;");
 
 function dropd(){
   getCurrentCL();
@@ -56,7 +51,6 @@ function addToWaitlist(){
   position=incId();
 
   var s1= new Student(name, position,email,phonenum,cls,msg);
-<<<<<<< HEAD
 
   addToQueue(s1);
   //write
@@ -133,31 +127,8 @@ localStorage.setItem('classlist', JSON.stringify(classes));
 function getCurrentCL() {
     let classes = JSON.parse(localStorage.getItem('classlist'));
     console.log(classes);
-=======
-  waitlist.enqueue(s1);
-  //write
-  alert("you have been added to the queue, your number is: "+position);
-}
-
-function removeFromWaitlist(){
-  currentpos+=1;
-  waitlist.dequeue();
->>>>>>> c5c84ef85b2ea83a46a4f7a6f88564557e0e3970
 }
 function getCurrentQueue() {
     let queue = JSON.parse(localStorage.getItem('queue'));
     console.log(queue);
-}
-function writeToFile(filename, list){
-waitlist=[];
-var text = fs.readFileSync(filename);
-var textByLine = text.split("\n");
-for(i=textByLine.length-1;i>=0;i--){
-  var sarray=textByLine[i].split(",");
-  var s1= new Student(sarray[0], sarray[1],sarray[2],sarray[3],sarray[4],sarray[5]);
-  waitlist.push(s1);
-}
-}
-function readFromFile(filename, list){
-
 }
