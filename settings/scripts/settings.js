@@ -28,6 +28,8 @@ function resetStorageupdated() {
     id++;
     queue.push(student);
     localStorage.setItem('currentQueue', JSON.stringify(queue))
+    // localStorage.setItem('officeStatus', JSON.stringify({status:true, time:null}))
+
 }
 
 
@@ -74,7 +76,7 @@ function submitOfficeInfo() {
         localStorage.setItem('officeStatus', JSON.stringify(statusObj));
     } else {
         statusObj = {
-            status: 'true',
+            status: 'false',
             time: null
         }
         localStorage.setItem('officeStatus', JSON.stringify(statusObj));
@@ -82,9 +84,30 @@ function submitOfficeInfo() {
     // refreshPage();
 }
 
-function toStandardTime(militaryTime) {
-    militaryTime = militaryTime.split(':');
-    return (militaryTime[0].charAt(0) == 1 && militaryTime[0].charAt(1) > 2) ? (militaryTime[0] - 12) + ':' + militaryTime[1] + ':' + militaryTime[2] + ' PM' : militaryTime.join(':') + ' AM'
+function toStandardTime(time) {
+
+    time = time.split(':'); // convert to array
+
+    // fetch
+    let hours = Number(time[0]);
+    let minutes = Number(time[1]);
+    let seconds = Number(time[2]);
+
+    // calculate
+    var timeValue;
+
+    if (hours > 0 && hours <= 12) {
+        timeValue = "" + hours;
+    } else if (hours > 12) {
+        timeValue = "" + (hours - 12);
+    } else if (hours == 0) {
+        timeValue = "12";
+    }
+
+    timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes; // get minutes
+    timeValue += (hours >= 12) ? " PM" : " AM"; // get AM/PM
+
+    return timeValue;
 }
 
 console.log(toStandardTime('16:30:00'));
