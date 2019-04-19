@@ -58,16 +58,16 @@ function setupEvents() {
 
 function modalSetup() {
     let listElements = document.getElementsByTagName('li');
-    let set = document.querySelector('#set-storage');
-    let get = document.querySelector('#get-storage');
+    // let set = document.querySelector('#set-storage');
+    // let get = document.querySelector('#get-storage');
 
-    set.addEventListener('click', function () {
-        updateQueue();
-    })
+    // set.addEventListener('click', function () {
+    //     updateQueue();
+    // })
 
-    get.addEventListener('click', function () {
-        getCurrentQueue();
-    })
+    // get.addEventListener('click', function () {
+    //     getCurrentQueue();
+    // })
 
     for (let index = 0; index < listElements.length; index++) {
         let li = listElements[index];
