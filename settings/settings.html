@@ -29,6 +29,13 @@
                         <legend>Office Information</legend>
                         <input id='professor-name' placeholder="Full Name"> <br />
                         <input id='office-number' placeholder="Office Number"> <br />
+                        <fieldset id='status-update'>
+                            <legend>Status</legend>
+                            <input type='radio' id='in-office' checked> In </input>
+                            <input type="radio" id='out-office'> Out </input> <br />
+                            <p> Enter return time (if you are going out of office):</p>
+                            <input type="time" id='time'> 
+                        </fieldset> <br/>
                         <button id='submit-office'> Submit </button>
                     </fieldset>
                 </form>

@@ -1,3 +1,4 @@
+//title: 'xxxx', description: 'xxx', photo:'/folder'
 let announcements = [{
         title: 'Test1',
         description: 'Test Description',
@@ -14,9 +15,7 @@ let announcements = [{
         photo: '../assets/stock1.jpg'
     },
 ];
-
 localStorage.setItem('announcements', JSON.stringify(announcements))
-//title: 'xxxx', description: 'xxx', photo:'/folder'
 function loadAnnouncements() {
     let announcemnets = JSON.parse(localStorage.getItem('announcements'))
     return announcemnets;
@@ -50,7 +49,7 @@ function setupAnnouncements() {
     });
 }
 
-function findTitle(name, announcements){
+function findTitle(name, announcements) {
     let result = -1;
     let trimmed = name.substring(0, name.length - 1);
     for (let index = 0; index < announcements.length; index++) {
@@ -62,7 +61,7 @@ function findTitle(name, announcements){
     return result;
 }
 
-function removeAnnFromLocalStorage(index, announcements){
+function removeAnnFromLocalStorage(index, announcements) {
     announcements.splice(index, 1)
     localStorage.setItem("announcements", JSON.stringify(announcements));
     return announcements;

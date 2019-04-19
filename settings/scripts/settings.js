@@ -56,18 +56,41 @@ function setupEvents() {
     })
 }
 
+function submitOfficeInfo() {
+    let name = document.querySelector('#office-modal #professor-name');
+    let office = document.querySelector('#office-number');
+    let statusObj;
+
+    localStorage.setItem('professorName', JSON.stringify(name.value));
+    localStorage.setItem('officeNumber', JSON.stringify(office.value));
+
+    if (document.getElementById('in-office').checked) {
+        let newTime = document.querySelector('#time');
+        console.log(newTime.value);
+        statusObj = {
+            status: 'true',
+            time: toStandardTime(newTime.value)
+        }
+        localStorage.setItem('officeStatus', JSON.stringify(statusObj));
+    } else {
+        statusObj = {
+            status: 'true',
+            time: null
+        }
+        localStorage.setItem('officeStatus', JSON.stringify(statusObj));
+    }
+    // refreshPage();
+}
+
+function toStandardTime(militaryTime) {
+    militaryTime = militaryTime.split(':');
+    return (militaryTime[0].charAt(0) == 1 && militaryTime[0].charAt(1) > 2) ? (militaryTime[0] - 12) + ':' + militaryTime[1] + ':' + militaryTime[2] + ' PM' : militaryTime.join(':') + ' AM'
+}
+
+console.log(toStandardTime('16:30:00'));
+
 function modalSetup() {
     let listElements = document.getElementsByTagName('li');
-    // let set = document.querySelector('#set-storage');
-    // let get = document.querySelector('#get-storage');
-
-    // set.addEventListener('click', function () {
-    //     updateQueue();
-    // })
-
-    // get.addEventListener('click', function () {
-    //     getCurrentQueue();
-    // })
 
     for (let index = 0; index < listElements.length; index++) {
         let li = listElements[index];
@@ -97,7 +120,6 @@ function setupProfessorInfo() {
     title.innerHTML = `${JSON.parse(localStorage.getItem('professorName'))}'s
     Hub`;
 }
-
 
 function refreshPage() {
     setupProfessorInfo();
