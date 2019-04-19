@@ -58,8 +58,6 @@ function setupEvents() {
 
 function modalSetup() {
     let listElements = document.getElementsByTagName('li');
-    console.log(`page-body li -> ${listElements}`)
-    console.log(listElements)
     let set = document.querySelector('#set-storage');
     let get = document.querySelector('#get-storage');
 
