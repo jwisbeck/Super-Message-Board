@@ -56,6 +56,35 @@ function addToWaitlist(){
   //write
   alert("you have been added to the queue, your number is: "+position);
 >>>>>>> c5c84ef85b2ea83a46a4f7a6f88564557e0e3970
+=======
+
+  addToQueue(s1);
+  //write
+  alert("you have been added to the queue, your number is: "+position);
+>>>>>>> c5c84ef85b2ea83a46a4f7a6f88564557e0e3970
+}
+let id=0;
+function setID(){
+    localStorage.setItem('id', JSON.stringify(id))
+}
+setID();
+
+function incId() {
+  let id = JSON.parse(localStorage.getItem('id'));
+    localStorage.setItem('id', JSON.stringify(queue));
+    return id;
+
+}
+
+function addToQueue(studentObj) {
+    getCurrentQueue();
+    queue.push(studentObj);
+    localStorage.setItem('currentQueue', JSON.stringify(queue));
+}
+function getNumberInline(){
+    getCurrentQueue();
+    console.log(queue.length);
+    return queue.length;
 }
 let id=0;
 function setID(){
@@ -108,6 +137,35 @@ function addToCL(cls) {
     localStorage.setItem('classlist', JSON.stringify(classes));
 }
 
+//removes a specific index
+function removeFromQueue(index){
+  getCurrentQueue();
+    queue.splice(index,1);
+    localStorage.setItem('currentQueue', JSON.stringify(queue));
+>>>>>>> c18495e1fabbd31840ce5b9f018ffbc23cabc87a
+>>>>>>> 71c9770bff1282e2321fe8037fe017f5e3ea0ede
+}
+//gets next in queue
+
+function nextInQueue(){
+  getCurrentQueue();
+  currentStudent=queue.shift();
+  localStorage.setItem('currentQueue', JSON.stringify(queue));
+}
+function getCurrentCL() {
+    let classes = JSON.parse(localStorage.getItem('classlist'));
+    console.log(classes);
+}
+
+//gets next in queue
+function resetCL(){
+localStorage.setItem('classlist', JSON.stringify(classlist));
+
+let cls="Other";
+
+classes.unshift(cls);
+localStorage.setItem('classlist', JSON.stringify(classes));
+}
 
 //removes a specific index
 function removeFromCL(index){
@@ -134,4 +192,12 @@ function getCurrentQueue() {
     let queue = JSON.parse(localStorage.getItem('queue'));
     console.log(queue);
 }
->>>>>>> c5c84ef85b2ea83a46a4f7a6f88564557e0e3970
+
+function getCurrentCL() {
+    let classes = JSON.parse(localStorage.getItem('classlist'));
+    console.log(classes);
+}
+function getCurrentQueue() {
+    let queue = JSON.parse(localStorage.getItem('queue'));
+    console.log(queue);
+}
