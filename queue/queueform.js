@@ -26,6 +26,7 @@ function dropd(){
   getCurrentCL();
   let numofclasses=classes.length;
   let s="";
+  s+="<option value=\"\"><\/option>";
   for(i=0;i<numofclasses;i++){
     s+="<option value=\""+classes[i]+"\">"+classes[i]+"<\/option>";
   }
@@ -35,6 +36,18 @@ dropd();
 function loadHome(){
 location.href = "HomePage.html";
 }
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+function validateNum(num) {
+    var re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+    return re.test(String(num));
+}
+function validateName(name) {
+    var re = /^([a-zA-Z]+(-[a-zA-Z]+)*(\s[a-zA-Z]+)*)$/;
+    return re.test(String(name).toLowerCase());
+}
 function addToWaitlist(){
   var name;//doc get element name
   var email;
@@ -43,10 +56,33 @@ function addToWaitlist(){
   var cls;
   var msg;
   //read
+  //add error functions
   name=document.getElementById("name").value;
+  if(validateName(name)){}else{
+    alert("invalid name, please enter a valid character string a-z, space and hyphens are allowed");
+    return false;
+}
   email=document.getElementById("email").value;
+  if(validateEmail(email)){
+
+  }else{
+    alert("invalid email youremail[at]email[dot]blah");
+    return false;
+  }
   phonenum=document.getElementById("phone").value;
+if(validateNum(phonenum)){
+
+}else{
+  alert("invalid phone number (),-,., [0-9]");
+  return false;
+}
   cls=document.getElementById("smeagol").value;
+  if(cls){
+
+  }else{
+    alert("Please choose a class");
+    return false;
+  }
   msg=document.getElementById("msg").value;
   position=incId();
 
@@ -55,13 +91,7 @@ function addToWaitlist(){
   addToQueue(s1);
   //write
   alert("you have been added to the queue, your number is: "+position);
->>>>>>> c5c84ef85b2ea83a46a4f7a6f88564557e0e3970
-=======
-
-  addToQueue(s1);
-  //write
-  alert("you have been added to the queue, your number is: "+position);
->>>>>>> c5c84ef85b2ea83a46a4f7a6f88564557e0e3970
+  return true;
 }
 let id=0;
 function setID(){
@@ -70,7 +100,7 @@ function setID(){
 setID();
 
 function incId() {
-  let id = JSON.parse(localStorage.getItem('id'));
+  id = JSON.parse(localStorage.getItem('id'));
     localStorage.setItem('id', JSON.stringify(queue));
     return id;
 
@@ -86,14 +116,13 @@ function getNumberInline(){
     console.log(queue.length);
     return queue.length;
 }
-let id=0;
 function setID(){
     localStorage.setItem('id', JSON.stringify(id))
 }
 setID();
 
 function incId() {
-  let id = JSON.parse(localStorage.getItem('id'));
+    id = JSON.parse(localStorage.getItem('id'));
     localStorage.setItem('id', JSON.stringify(queue));
     return id;
 
@@ -116,7 +145,6 @@ function removeFromQueue(index){
   getCurrentQueue();
     queue.splice(index,1);
     localStorage.setItem('currentQueue', JSON.stringify(queue));
->>>>>>> c18495e1fabbd31840ce5b9f018ffbc23cabc87a
 }
 //gets next in queue
 
@@ -142,8 +170,7 @@ function removeFromQueue(index){
   getCurrentQueue();
     queue.splice(index,1);
     localStorage.setItem('currentQueue', JSON.stringify(queue));
->>>>>>> c18495e1fabbd31840ce5b9f018ffbc23cabc87a
->>>>>>> 71c9770bff1282e2321fe8037fe017f5e3ea0ede
+
 }
 //gets next in queue
 
