@@ -28,6 +28,8 @@ function resetStorageupdated() {
     id++;
     queue.push(student);
     localStorage.setItem('currentQueue', JSON.stringify(queue))
+    // localStorage.setItem('officeStatus', JSON.stringify({status:true, time:null}))
+
 }
 
 
@@ -39,6 +41,8 @@ function setup() {
     setupQueue();
     setupEvents();
     setupAnnouncements();
+    loadAvailableTime();
+
 }
 
 function setupEvents() {
@@ -56,18 +60,61 @@ function setupEvents() {
     })
 }
 
+function submitOfficeInfo() {
+    let name = document.querySelector('#office-modal #professor-name');
+    let office = document.querySelector('#office-number');
+    let statusObj;
+
+    localStorage.setItem('professorName', JSON.stringify(name.value));
+    localStorage.setItem('officeNumber', JSON.stringify(office.value));
+
+    if (document.getElementById('in-office').checked) {
+        let newTime = document.querySelector('#time');
+        console.log(newTime.value);
+        statusObj = {
+            status: 'true',
+            time: toStandardTime(newTime.value)
+        }
+        localStorage.setItem('officeStatus', JSON.stringify(statusObj));
+    } else {
+        statusObj = {
+            status: 'false',
+            time: null
+        }
+        localStorage.setItem('officeStatus', JSON.stringify(statusObj));
+    }
+    // refreshPage();
+}
+
+function toStandardTime(time) {
+
+    time = time.split(':'); // convert to array
+
+    // fetch
+    let hours = Number(time[0]);
+    let minutes = Number(time[1]);
+
+    // calculate
+    var timeValue;
+
+    if (hours > 0 && hours <= 12) {
+        timeValue = "" + hours;
+    } else if (hours > 12) {
+        timeValue = "" + (hours - 12);
+    } else if (hours == 0) {
+        timeValue = "12";
+    }
+
+    timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes; // get minutes
+    timeValue += (hours >= 12) ? " PM" : " AM"; // get AM/PM
+
+    return timeValue;
+}
+
+console.log(toStandardTime('16:30:00'));
+
 function modalSetup() {
     let listElements = document.getElementsByTagName('li');
-    // let set = document.querySelector('#set-storage');
-    // let get = document.querySelector('#get-storage');
-
-    // set.addEventListener('click', function () {
-    //     updateQueue();
-    // })
-
-    // get.addEventListener('click', function () {
-    //     getCurrentQueue();
-    // })
 
     for (let index = 0; index < listElements.length; index++) {
         let li = listElements[index];
@@ -89,6 +136,16 @@ function modalSetup() {
             currentModal[index].style.display = 'none';
         })
     }
+
+    //TODO: Andy Code
+    var rmButton = document.getElementsByClassName("rmButton");
+    for (i = 0; i < rmButton.length; i++) {
+        rmButton[i].addEventListener("click",
+            function () {
+                this.parentElement.style.display = 'none';
+            }
+        );
+    }
 }
 
 
@@ -97,7 +154,6 @@ function setupProfessorInfo() {
     title.innerHTML = `${JSON.parse(localStorage.getItem('professorName'))}'s
     Hub`;
 }
-
 
 function refreshPage() {
     setupProfessorInfo();
