@@ -137,7 +137,7 @@
         <legend><strong>
                 <font size="5">Queue</font>
             </strong></legend>
-        <button id="button" onclick="location.href = '../queue/queueform.html';">ADD TO QUEUE</button>'
+        <button id="button" onclick="if(enabledQ()){location.href = '../queue/queueform.html';}else{alert('Queue Not Available At This Time, Please Refer to Professors Availablity');}">ADD TO QUEUE</button>'
         <label>
             <font size="6"><strong>Queue: </strong></font>
         </label>

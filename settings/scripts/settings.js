@@ -50,25 +50,43 @@ function setup() {
     loadAvailableTime();
 
 }
-
+function validateName(name) {
+    var re = /^([a-zA-Z]+(-[a-zA-Z]+)*(\s[a-zA-Z]+)*)$/;
+    return re.test(String(name).toLowerCase());
+}
+function validateNumber(num) {
+    var re = /^[0-5][0-9][0-9][0-9]$/;
+    return re.test(String(num));
+}
 function setupEvents() {
-    let officeBtn = document.querySelector('#submit-office');
+   let officeBtn = document.querySelector('#submit-office');
     let toggleBtn = document.querySelector('#queue-toggle');
     let notifyBtn = document.querySelector('#notify-queue');
-
+    let value=0;
 
     officeBtn.addEventListener('click', function () {
-        submitOfficeInfo();
+        submitOfficeInfo();    
     })
 
     toggleBtn.addEventListener('click', function () {
         toggleQueue();
     })
+
 }
 
 function submitOfficeInfo() {
-    let name = document.querySelector('#office-modal #professor-name');
-    let office = document.querySelector('#office-number');
+  let name = document.querySelector('#office-modal #professor-name');
+  let office = document.querySelector('#office-number');
+
+  if(!validateName(name.value)){
+    alert("please enter a valid name");
+  return false;
+  }
+  if(!validateNumber(office.value)){
+    alert("please enter a valid Office number ####");
+    return false;
+  }
+
     let statusObj;
 
     localStorage.setItem('professorName', JSON.stringify(name.value));
@@ -90,6 +108,7 @@ function submitOfficeInfo() {
         localStorage.setItem('officeStatus', JSON.stringify(statusObj));
     }
     // refreshPage();
+    return true;
 }
 
 function toStandardTime(time) {
