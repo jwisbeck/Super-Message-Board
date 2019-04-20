@@ -41,6 +41,8 @@ function setup() {
     setupQueue();
     setupEvents();
     setupAnnouncements();
+    loadAvailableTime();
+
 }
 
 function setupEvents() {
@@ -91,7 +93,6 @@ function toStandardTime(time) {
     // fetch
     let hours = Number(time[0]);
     let minutes = Number(time[1]);
-    let seconds = Number(time[2]);
 
     // calculate
     var timeValue;
@@ -134,6 +135,16 @@ function modalSetup() {
             let currentModal = document.querySelectorAll('.modal');
             currentModal[index].style.display = 'none';
         })
+    }
+
+    //TODO: Andy Code
+    var rmButton = document.getElementsByClassName("rmButton");
+    for (i = 0; i < rmButton.length; i++) {
+        rmButton[i].addEventListener("click",
+            function () {
+                this.parentElement.style.display = 'none';
+            }
+        );
     }
 }
 
