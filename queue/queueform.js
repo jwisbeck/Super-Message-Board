@@ -48,6 +48,13 @@ function validateName(name) {
     var re = /^([a-zA-Z]+(-[a-zA-Z]+)*(\s[a-zA-Z]+)*)$/;
     return re.test(String(name).toLowerCase());
 }
+
+function validateMSG(msg) {
+  var re = /^.*[a-zA-Z]+.*$/;
+  return re.test(String(msg).toLowerCase());
+
+}
+
 function addToWaitlist(){
   var name;//doc get element name
   var email;
@@ -84,6 +91,12 @@ if(validateNum(phonenum)){
     return false;
   }
   msg=document.getElementById("msg").value;
+  if(validateMSG(msg)){
+
+  }else{
+    alert("Please give a reason why you are here");
+    return false;
+  }
   position=incId();
 
   var s1= new Student(name, position,email,phonenum,cls,msg);
