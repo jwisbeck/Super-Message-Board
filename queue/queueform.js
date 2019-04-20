@@ -48,11 +48,19 @@ function validateName(name) {
     var re = /^([a-zA-Z]+(-[a-zA-Z]+)*(\s[a-zA-Z]+)*)$/;
     return re.test(String(name).toLowerCase());
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 136acba3217e542326d600476eec0792153b5d24
 function validateMSG(msg) {
   var re = /^.*[a-zA-Z]+.*$/;
   return re.test(String(msg).toLowerCase());
 
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 136acba3217e542326d600476eec0792153b5d24
 function addToWaitlist(){
   var name;//doc get element name
   var email;
