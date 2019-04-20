@@ -35,6 +35,10 @@ dropd();
 function loadHome(){
 location.href = "HomePage.html";
 }
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
 function addToWaitlist(){
   var name;//doc get element name
   var email;
@@ -43,9 +47,16 @@ function addToWaitlist(){
   var cls;
   var msg;
   //read
+  //add error functions
   name=document.getElementById("name").value;
   email=document.getElementById("email").value;
+  if(validateEmail(email)){
+
+  }else{
+    return false;
+  }
   phonenum=document.getElementById("phone").value;
+  
   cls=document.getElementById("smeagol").value;
   msg=document.getElementById("msg").value;
   position=incId();
@@ -55,13 +66,7 @@ function addToWaitlist(){
   addToQueue(s1);
   //write
   alert("you have been added to the queue, your number is: "+position);
->>>>>>> c5c84ef85b2ea83a46a4f7a6f88564557e0e3970
-=======
-
-  addToQueue(s1);
-  //write
-  alert("you have been added to the queue, your number is: "+position);
->>>>>>> c5c84ef85b2ea83a46a4f7a6f88564557e0e3970
+  return true;
 }
 let id=0;
 function setID(){
