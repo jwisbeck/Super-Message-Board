@@ -18,11 +18,13 @@ function enabledQ(){
 }
 //This is the office hour button, a collapsible week
 function ohButton() {
+
   var coll = document.getElementsByClassName("collapsible");
   var i;
 
   for (i = 0; i < coll.length; i++) {
     coll[i].addEventListener("click", function () {
+        getOH();
       this.classList.toggle("active");
       var content = document.getElementById("weekbutton")
 
