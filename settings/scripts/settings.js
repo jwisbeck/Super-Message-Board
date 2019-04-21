@@ -35,7 +35,6 @@ function resetStorageupdated() {
     localStorage.setItem('currentQueue', JSON.stringify(queue))
     localStorage.setItem('officeNumber', '1208');
     // localStorage.setItem('officeStatus', JSON.stringify({status:true, time:null}))
-
 }
 
 
@@ -50,14 +49,26 @@ function setup() {
     loadAvailableTime();
 
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> aa28d7d3587e7667427304874074c56c675a61b7
 function validateName(name) {
     var re = /^([a-zA-Z]+(-[a-zA-Z]+)*(\s[a-zA-Z]+)*)$/;
     return re.test(String(name).toLowerCase());
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> aa28d7d3587e7667427304874074c56c675a61b7
 function validateNumber(num) {
     var re = /^[0-5][0-9][0-9][0-9]$/;
     return re.test(String(num));
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> aa28d7d3587e7667427304874074c56c675a61b7
 function setupEvents() {
    let officeBtn = document.querySelector('#submit-office');
     let toggleBtn = document.querySelector('#queue-toggle');
@@ -74,6 +85,7 @@ function setupEvents() {
 
 }
 
+//Event that updates office information
 function submitOfficeInfo() {
   let name = document.querySelector('#office-modal #professor-name');
   let office = document.querySelector('#office-number');
@@ -111,6 +123,7 @@ function submitOfficeInfo() {
     return true;
 }
 
+//Converts time from XX:XX:XX to XX:XX (AM/PM)
 function toStandardTime(time) {
 
     time = time.split(':'); // convert to array
@@ -136,8 +149,7 @@ function toStandardTime(time) {
     return timeValue;
 }
 
-console.log(toStandardTime('16:30:00'));
-
+//Initializes each modal and the li events
 function modalSetup() {
     let listElements = document.getElementsByTagName('li');
 
@@ -162,7 +174,6 @@ function modalSetup() {
         })
     }
 
-    //TODO: Andy Code
     var rmButton = document.getElementsByClassName("rmButton");
     for (i = 0; i < rmButton.length; i++) {
         rmButton[i].addEventListener("click",
@@ -181,7 +192,6 @@ function setupProfessorInfo() {
     let office = document.querySelector('#nav-office-number');
     console.log(office);
     office.innerHTML = localStorage.getItem('officeNumber');
-
 }
 
 function refreshPage() {
