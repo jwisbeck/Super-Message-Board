@@ -113,7 +113,7 @@ setID();
 function incId() {
   id = JSON.parse(localStorage.getItem('id'));
     localStorage.setItem('id', JSON.stringify(queue));
-    return id;
+    return id++;
 
 }
 
@@ -242,8 +242,7 @@ function getCurrentQueue() {
 
 function setupNav(){
     let office = document.querySelector('#nav-office-number');
-    
+
     office.innerHTML = localStorage.getItem('officeNumber');
 
   }
-  
