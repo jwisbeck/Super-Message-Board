@@ -13,14 +13,18 @@ window.onload = function () {
 
 //the orginal slideIndex
 var slideIndex = 0;
-
+function enabledQ(){
+  return JSON.parse(localStorage.getItem("queueStatus"))==="Enabled";
+}
 //This is the office hour button, a collapsible week
 function ohButton() {
+
   var coll = document.getElementsByClassName("collapsible");
   var i;
 
   for (i = 0; i < coll.length; i++) {
     coll[i].addEventListener("click", function () {
+        getOH();
       this.classList.toggle("active");
       var content = document.getElementById("weekbutton")
 
@@ -33,7 +37,7 @@ function ohButton() {
   }
 }
 
-//Status function, changes the appearnce based on the boolean "here" value 
+//Status function, changes the appearnce based on the boolean "here" value
 function status(here) {
   if (here == false) {
     outOfOffice(0, 0, 10); // this takes parameters (hours,minutes,seconds)
@@ -45,7 +49,7 @@ function status(here) {
 
 }
 
-//changes the Status text 
+//changes the Status text
 function inOffice() {
   document.getElementById("statusValue").innerHTML = "I am in my office!"
 }
@@ -79,7 +83,7 @@ function outOfOffice(hours, mins, secs) {
     document.getElementById("statusValue").innerHTML = + hours + "h "
       + minutes + "m " + seconds + "s ";
 
-    // If the count down is finished, write some text 
+    // If the count down is finished, write some text
     if (distance < 0) {
       clearInterval(x);
       document.getElementById("statusValue").innerHTML = "Should be here any minute!!";
@@ -170,6 +174,3 @@ function setupNav(){
   console.log(office);
   office.innerHTML = localStorage.getItem('officeNumber');
 }
-
-
-
