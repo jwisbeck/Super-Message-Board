@@ -12,6 +12,13 @@ window.onload = function () {
   getAnnouncements1();
   getAnnouncements2();
   getAnnouncements3();
+  setupThemeProfessor();
+}
+
+function setupOffice(){
+  let name = document.querySelector('#name');
+  name.innerHTML = `${JSON.parse(localStorage.getItem('professorName'))}'s
+  Office`;
 }
 
 //the orginal slideIndex
@@ -159,6 +166,7 @@ function showDivs(n) {
 
 function getOH(){
   let officeHours = JSON.parse(localStorage.getItem("availability"));
+  document.getElementById("todayOfficeHourButton").innerHTML = queueDay();
   document.getElementById("mondayValue").innerHTML = noOH(officeHours.Monday);
   document.getElementById("tuesdayValue").innerHTML = noOH(officeHours.Tuesday);
   document.getElementById("wednesdayValue").innerHTML = noOH(officeHours.Wedneday);
@@ -178,8 +186,9 @@ function setupNav(){
   let office1 = document.querySelector('#nav-office-number1');
   let office2 = document.querySelector('#nav-office-number2');
 
-  office1.innerHTML = localStorage.getItem('officeNumber');
-  office2.innerHTML = localStorage.getItem('officeNumber');
+  office1.innerHTML =  JSON.parse(localStorage.getItem('officeNumber'));
+  office2.innerHTML =  JSON.parse(localStorage.getItem('officeNumber'));
+  
 }
 
 
@@ -188,6 +197,7 @@ function getAnnouncements1(){
   let officeHours = JSON.parse(localStorage.getItem("announcements"));
   console.log(officeHours[0].photo)
   document.getElementById("img1").src =  officeHours[0].photo;
+
 }
 function getAnnouncements2(){
   let officeHours = JSON.parse(localStorage.getItem("announcements"));
@@ -196,4 +206,118 @@ function getAnnouncements2(){
 function getAnnouncements3(){
   let officeHours = JSON.parse(localStorage.getItem("announcements"));
   document.getElementById("img3").src = officeHours[2].photo
+
+}
+function getAnnouncements2(){
+  let officeHours = JSON.parse(localStorage.getItem("announcements"));
+  document.getElementById("img2").src = officeHours[1].photo
+}
+function getAnnouncements3(){
+  let officeHours = JSON.parse(localStorage.getItem("announcements"));
+  document.getElementById("img3").src = officeHours[2].photo
+}
+
+//Queue display details
+function peopleWaiting(){
+  let total = JSON.parse(localStorage.getItem("currentQueue"))
+  if(total.length == 1){
+    document.getElementById("peopleRemaining").innerHTML = "There is <u><strong>" + total.length + "</strong></u> person left in the queue"
+  } else {
+    document.getElementById("peopleRemaining").innerHTML = "There are <u><strong>" + total.length + "</strong></u> people left in the queue"
+  }
+  document.getElementById("current").innerHTML = "#" + total[0].posistion;
+}
+
+peopleWaiting()
+
+function queueDay(){
+  let officeHours = JSON.parse(localStorage.getItem("availability"));
+  var d = new Date();
+  var n = d.getDay()
+  if (n == 0){
+    return "No Office Hours Today"
+  } else if (n == 1){
+    if (noOH(officeHours.Monday)== "N/A"){
+      return "No Office Hours Today"
+    } else {
+      return noOH(officeHours.Monday)
+    }
+  } else if (n == 2){
+    if (noOH(officeHours.Tuesday)== "N/A"){
+      return "No Office Hours Today"
+    } else {
+      return noOH(officeHours.Tuesday)
+    }
+  } else if (n == 3){
+    if (noOH(officeHours.Wedneday)== "N/A"){
+      return "No Office Hours Today"
+    } else {
+      return noOH(officeHours.Wedneday)
+    }
+  } else if (n == 4){
+    if (noOH(officeHours.Thursday)== "N/A"){
+      return "No Office Hours Today"
+    } else {
+      return noOH(officeHours.Thursday)
+    }
+  } else if (n == 5){
+    if (noOH(officeHours.Friday)== "N/A"){
+      return "No Office Hours Today"
+    } else {
+      return noOH(officeHours.Friday)
+    }
+  } else if (n == 6){
+    return "No Office Hours Today"
+  }
+}
+
+//Function called to set theme onwindow load or when theme is changed;
+//themes[nav,bg,text,secondaryBG, modalBG, navText, type]
+function setupThemeProfessor() {
+  console.log('Setting Up Theme')
+    let nav = document.querySelector('.navbar');
+    let body = document.querySelector('body');
+    let themes = JSON.parse(localStorage.getItem('themes'));
+
+    let buttons = document.querySelectorAll('#button');
+    let weekday = document.querySelector('.weekdays');
+    let marquee = document.querySelector('marquee');
+    let marqueeFont = document.querySelector('marquee font');
+    console.log(marqueeFont);
+
+    /* Consistent Across All Pages */
+    nav.style.backgroundColor = themes[0];
+    nav.style.color = themes[3];
+    body.style.backgroundColor = themes[1];
+    body.style.color = themes[2];
+
+    /* Page Specific */
+    marquee.style.backgroundColor = themes[1];
+    marqueeFont.style.color = themes[2];
+
+    if(themes[6] == 'dark'){
+
+      buttons.forEach(btn => {
+        btn.classList.remove('umd-button');
+        btn.classList.add('dark-button');
+      })
+      weekday.classList.remove("umd-weekdays")
+
+    }else if(themes[6] == 'umd'){
+
+      buttons.forEach(btn => {
+        btn.classList.remove('dark-button');
+        btn.classList.add('umd-button');
+      })
+      weekday.classList.add("umd-weekdays")
+
+      
+    }else{
+      buttons.forEach(btn => {
+        btn.classList.remove('dark-button');
+        btn.classList.remove('umd-button');
+      })
+      weekday.classList.remove("umd-weekdays")
+
+    }
 }
