@@ -49,8 +49,8 @@ function getCurrentQueue() {
     return queue;
 }
 
-
-
+//TODO: When student is removed update Notify Prompt
+//TODO: Stop removal of duplicate students
 
 function loadQueue() {
     let queueElement = document.querySelector('ol');

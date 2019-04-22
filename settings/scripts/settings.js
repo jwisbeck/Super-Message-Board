@@ -16,7 +16,7 @@ let currentStudent;
 let numInQueue = 0;
 
 window.onload = function () {
-    // resetStorage();
+    resetStorage();
     setup();
 }
 
@@ -37,7 +37,7 @@ function resetStorageupdated() {
     // localStorage.setItem('officeStatus', JSON.stringify({status:true, time:null}))
 }
 
-
+//TODO: Setup nav
 /******************** HTML STEUP AND MANIPULATION ********************/
 function setup() {
     // console.log('Setting up')
@@ -270,7 +270,6 @@ function setupThemeSettings() {
     modal.forEach(modal => {
         modal.style.backgroundColor = themes[4];
         modal.style.color = themes[2]
-        console.log(modal)
     });
 
     modalContent.forEach(modal => {
