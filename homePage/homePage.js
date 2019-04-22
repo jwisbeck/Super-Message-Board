@@ -84,6 +84,7 @@ function setupThemeHome() {
     let themes = JSON.parse(localStorage.getItem('themes'));
 
     let marquee = document.querySelector('marquee');
+    let marqueeFont = document.querySelector('marquee font');
 
     /* Consistent Across All Pages */
     nav.style.backgroundColor = themes[0];
@@ -93,7 +94,7 @@ function setupThemeHome() {
 
     /* Page Specific */
     marquee.style.backgroundColor = themes[1];
-    marquee.style.color = themes[2];
+    marqueeFont.style.color = themes[2];
 
 }
 

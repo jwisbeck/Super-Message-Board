@@ -282,7 +282,8 @@ function setupThemeProfessor() {
     let buttons = document.querySelectorAll('#button');
     let weekday = document.querySelector('.weekdays');
     let marquee = document.querySelector('marquee');
-    console.log(weekday);
+    let marqueeFont = document.querySelector('marquee font');
+    console.log(marqueeFont);
 
     /* Consistent Across All Pages */
     nav.style.backgroundColor = themes[0];
@@ -292,7 +293,7 @@ function setupThemeProfessor() {
 
     /* Page Specific */
     marquee.style.backgroundColor = themes[1];
-    marquee.style.color = themes[2];
+    marqueeFont.style.color = themes[2];
 
     if(themes[6] == 'dark'){
 
