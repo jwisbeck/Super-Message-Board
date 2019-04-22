@@ -7,6 +7,8 @@ classes.push("CMSC412");
 classes.push("CMSC666");
 classes.push("Other");
 let queue=[];
+
+
 var currentpos=0;
 var last =currentpos;
 function Student(name,position,email, phonenum,cls,msg){
@@ -96,23 +98,30 @@ if(validateNum(phonenum)){
     return false;
   }
   position=incId();
-
+  setID();
   var s1= new Student(name, position,email,phonenum,cls,msg);
-
+  getCurrentQueue()
+  if(!queue){
+    queue=[]
+    queue.push(s1)
+  localStorage.setItem('currentQueue', JSON.stringify(queue));
+}else{
   addToQueue(s1);
+}
   //write
   alert("you have been added to the queue, your number is: "+position);
   return true;
 }
-let id=0;
-function setID(){
-    localStorage.setItem('id', JSON.stringify(id))
+var id;
+if (!JSON.parse(localStorage.getItem('id'))) {
+ id=0;
+}else{
+ id= JSON.parse(localStorage.getItem('id'));
 }
-setID();
-
 function incId() {
   id = JSON.parse(localStorage.getItem('id'));
     localStorage.setItem('id', JSON.stringify(queue));
+
     return id++;
 
 }
@@ -132,18 +141,6 @@ function setID(){
 }
 setID();
 
-function incId() {
-    id = JSON.parse(localStorage.getItem('id'));
-    localStorage.setItem('id', JSON.stringify(queue));
-    return id;
-
-}
-
-function addToQueue(studentObj) {
-    getCurrentQueue();
-    queue.push(studentObj);
-    localStorage.setItem('currentQueue', JSON.stringify(queue));
-}
 function getNumberInline(){
     getCurrentQueue();
     console.log(queue.length);
@@ -227,18 +224,10 @@ function getCurrentCL() {
     console.log(classes);
 }
 function getCurrentQueue() {
-    let queue = JSON.parse(localStorage.getItem('queue'));
+     queue = JSON.parse(localStorage.getItem('currentQueue'));
     console.log(queue);
 }
 
-function getCurrentCL() {
-    let classes = JSON.parse(localStorage.getItem('classlist'));
-    console.log(classes);
-}
-function getCurrentQueue() {
-    let queue = JSON.parse(localStorage.getItem('queue'));
-    console.log(queue);
-}
 
 function setupNav(){
     let office = document.querySelector('#nav-office-number');
