@@ -33,9 +33,8 @@ function setupAnnouncements() {
         closeBtn.classList.add('remove')
         closeBtn.innerHTML = '&#x2716;';
         closeBtn.addEventListener('click', function () {
-            //TODO: Fix Announcement Deletion
-            let index = findTitle(this.parentElement.textContent, announcements);
-            queue = removeAnnFromLocalStorage(index, announcements);
+            let index = findTitle(this.parentElement.textContent, currentAnnouncements);
+            queue = removeAnnFromLocalStorage(index, currentAnnouncements);
             this.parentElement.remove();
         })
 
@@ -106,13 +105,13 @@ function addAnnouncement() {
     let newPhoto;
 
     if (document.querySelector('#option-1').checked) {
-        newPhoto = '../assets/stock1.jpg'
+        newPhoto = '../settings/assets/stock1.jpg'
     } else if (document.querySelector('#option-2').checked) {
-        newPhoto = '../assets/stock2.png'
+        newPhoto = '../settings/assets/stock2.png'
     } else if (document.querySelector('#option-3').checked) {
-        newPhoto = '../assets/stock3.jpg'
+        newPhoto = '../setting/assets/stock3.jpg'
     } else {
-        newPhoto = '../assets/stock5.jpg'
+        newPhoto = '../settings/assets/stock5.png'
     }
     announcements.push({
         title: newTitle,

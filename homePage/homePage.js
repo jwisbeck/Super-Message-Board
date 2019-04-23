@@ -73,6 +73,10 @@ function setupNav(){
   
   office1.innerHTML = JSON.parse(localStorage.getItem('officeNumber'));
   office2.innerHTML = JSON.parse(localStorage.getItem('officeNumber'));
+
+  let navNam = document.querySelector('#prof-name');
+  navNam.innerHTML = `${JSON.parse(localStorage.getItem('professorName'))}'s Page &rarr;`;
+
 }
 
 //Function called to set theme onwindow load or when theme is changed;
@@ -97,6 +101,7 @@ function setupThemeHome() {
     marqueeFont.style.color = themes[2];
 
 }
+
 
   
 

@@ -13,6 +13,8 @@ window.onload = function () {
   getAnnouncements2();
   getAnnouncements3();
   setupThemeProfessor();
+  setupProfessorName();
+
 }
 
 function setupOffice(){
@@ -321,3 +323,9 @@ function setupThemeProfessor() {
 
     }
 }
+
+function setupProfessorName(){
+  let name = document.querySelector("#name");
+  name.innerHTML = `${JSON.parse(localStorage.getItem('professorName'))}'s Office`;
+}
+
