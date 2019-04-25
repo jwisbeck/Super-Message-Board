@@ -102,13 +102,25 @@ function submitOfficeInfo() {
         console.log(newTime.value);
         statusObj = {
             status: 'true',
+<<<<<<< HEAD
             time: toStandardTime(newTime.value)
+=======
+            hours: null,
+            minutes: null,
+            seconds: null
+>>>>>>> 9bed544054031744b300f7507658f0302193c486
         }
         localStorage.setItem('officeStatus', JSON.stringify(statusObj));
     } else {
         statusObj = {
             status: 'false',
+<<<<<<< HEAD
             time: null
+=======
+            hours: newHours.value,
+            minutes: newMinutes.value,
+            seconds: 0,
+>>>>>>> 9bed544054031744b300f7507658f0302193c486
         }
         localStorage.setItem('officeStatus', JSON.stringify(statusObj));
     }
