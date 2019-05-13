@@ -184,22 +184,19 @@ function setupProfessorInfo() {
     Hub`;
     let office = document.querySelector('#nav-office-number');
     console.log(office);
-<<<<<<< HEAD
-    office.innerHTML = localStorage.getItem('officeNumber');
-=======
+
     office.innerHTML = JSON.parse(localStorage.getItem('officeNumber'));
 
     let navNam = document.querySelector('#prof-name');
     navNam.innerHTML = `${JSON.parse(localStorage.getItem('professorName'))}'s Page`;
 
->>>>>>> f005adc37899066e948e58182736b4be273c58d6
+
 }
 
 function refreshPage() {
     setupProfessorInfo();
 }
-<<<<<<< HEAD
-=======
+
 
 function setupThemeModal() {
     let themeOptions = document.querySelectorAll('.themes');
@@ -286,5 +283,3 @@ function setupThemeSettings() {
     });
 
 }
-
->>>>>>> f005adc37899066e948e58182736b4be273c58d6
