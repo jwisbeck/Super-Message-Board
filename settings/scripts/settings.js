@@ -16,7 +16,7 @@ let currentStudent;
 let numInQueue = 0;
 
 window.onload = function(){
-    resetStorage();
+    //resetStorage();
     setup();
     }
 
@@ -53,6 +53,7 @@ function setup() {
     setupEvents();
     setupAnnouncements();
     loadAvailableTime();
+    setupThemeModal();
 
 }
 function validateName(name) {
@@ -181,7 +182,7 @@ function modalSetup() {
 
 function setupProfessorInfo() {
     let title = document.querySelector('#page-title');
-  
+
     title.innerHTML = `${JSON.parse(localStorage.getItem('professorName'))}'s
     Hub`;
     let office = document.querySelector('#nav-office-number');
@@ -206,6 +207,7 @@ function setupThemeModal() {
 
     button.addEventListener('click',
         function () {
+          console.log("theme click");
             for (let index = 0; index < themeOptions.length; index++) {
                 if (themeOptions[index].checked) {
                     changeTheme(themeOptions[index], index);
@@ -220,6 +222,7 @@ function setupThemeModal() {
 
 
 //Function changes the current theme in local storage
+
 function changeTheme(option, index) {
     let text, nav, bg, secondaryBG, modalB, navText, type;
     if (option.value == 'dark') {
