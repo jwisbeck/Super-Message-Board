@@ -17,15 +17,18 @@
 // ];
 // localStorage.setItem('announcements', JSON.stringify(announcements))
 function loadAnnouncements() {
-    let announcemnets = JSON.parse(localStorage.getItem('announcements'))
-    return announcemnets;
+    let announcements = JSON.parse(localStorage.getItem('announcements'))
+    if(!announcements){
+      announcements=[];
+    }
+    return announcements;
 }
 
 function setupAnnouncements() {
     let currentAnnouncements = loadAnnouncements();
     let titles = document.querySelector("#annoucement-titles");
     let submitBtn = document.querySelector('#announcement-submit');
-
+  //  if(currentAnnouncements)
     for (let i = 0; i < currentAnnouncements.length; i++) {
         let li = document.createElement('li');
 

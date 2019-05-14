@@ -46,6 +46,7 @@ function resetStorageupdated() {
 /******************** HTML STEUP AND MANIPULATION ********************/
 function setup() {
     // console.log('Setting up')
+
     setupProfessorInfo();
     modalSetup();
     setupQueue();
@@ -180,6 +181,7 @@ function modalSetup() {
 
 function setupProfessorInfo() {
     let title = document.querySelector('#page-title');
+  
     title.innerHTML = `${JSON.parse(localStorage.getItem('professorName'))}'s
     Hub`;
     let office = document.querySelector('#nav-office-number');
